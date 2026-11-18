@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOLA | متجر النظارات الشمسية</title>
+  <meta name="description" content="SOLA متجر نظارات شمسية للرجال والنساء في المملكة العربية السعودية. توصيل مجاني وقسيمة شرائية عند الطلب بـ 350 ريال." />
+
+  <!-- Non-classic beautiful fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --green-dark: #0b3d2e;
+      --green-deep: #06261d;
+      --green-mid: #125c45;
+      --green-soft: #e6f0ec;
+      --white: #ffffff;
+      --off-white: #f7faf8;
+      --gray: #6b7c75;
+      --gray-light: #eef2f0;
+      --accent: #c9a227;
+      --shadow: 0 10px 30px rgba(11, 61, 46, 0.10);
+      --shadow-hover: 0 18px 40px rgba(11, 61, 46, 0.18);
+      --radius: 18px;
+      --radius-sm: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Cairo', 'Outfit', sans-serif;
+      background: var(--white);
+      color: var(--green-deep);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button { font-family: inherit; cursor: pointer; border: none; }
+
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+
+    /* ===== Top bar ===== */
+    .topbar {
+      background: var(--green-deep);
+      color: var(--white);
+      font-size: 13px;
+      padding: 8px 0;
+      text-align: center;
+    }
+    .topbar span { margin: 0 14px; }
+    .topbar .dot { color: var(--accent); }
+
+    /* ===== Header ===== */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--gray-light);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 74px;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 800; font-size: 26px; letter-spacing: 1px;
+      color: var(--green-dark);
+    }
+    .logo-mark {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: var(--green-dark);
+      display: grid; place-items: center;
+      color: var(--white); font-size: 22px;
+    }
+    .nav-links {
+      display: flex; gap: 34px; align-items: center;
+      font-weight: 600; font-size: 15px;
+    }
+    .nav-links a { position: relative; padding: 6px 0; transition: color .2s; }
+    .nav-links a:hover { color: var(--green-mid); }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; right: 0; left: 0;
+      height: 2px; background: var(--green-mid);
+      transform: scaleX(0); transform-origin: right; transition: transform .3s;
+    }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .nav-actions { display: flex; align-items: center; gap: 14px; }
+    .icon-btn {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--gray-light); display: grid; place-items: center;
+      transition: background .2s, transform .2s;
+    }
+    .icon-btn:hover { background: var(--green-soft); transform: translateY(-2px); }
+    .cart-btn { position: relative; }
+    .cart-count {
+      position: absolute; top: 4px; left: 4px;
+      background: var(--accent); color: var(--green-deep);
+      width: 18px; height: 18px; border-radius: 50%;
+      font-size: 11px; font-weight: 700;
+      display: grid; place-items: center;
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      position: relative;
+      padding: 90px 0 70px;
+      background: linear-gradient(135deg, var(--off-white) 0%, var(--green-soft) 100%);
+      overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -120px; left: -120px;
+      width: 420px; height: 420px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(18,92,69,0.18), transparent 70%);
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center;
+    }
+    .hero-text h1 {
+      font-size: clamp(38px, 5vw, 62px);
+      font-weight: 800; line-height: 1.15;
+      color: var(--green-deep);
+      margin-bottom: 20px;
+    }
+    .hero-text h1 .highlight { color: var(--green-mid); }
+    .hero-text p {
+      font-size: 18px; color: var(--gray); max-width: 520px;
+      margin-bottom: 34px;
+    }
+    .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn {
+      padding: 14px 28px; border-radius: 999px;
+      font-weight: 700; font-size: 15px;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: transform .2s, box-shadow .2s, background .2s;
+    }
+    .btn-primary {
+      background: var(--green-dark); color: var(--white);
+      box-shadow: 0 8px 20px rgba(11,61,46,0.25);
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 28px rgba(11,61,46,0.3); }
+    .btn-ghost {
+      background: var(--white); color: var(--green-dark);
+      border: 2px solid var(--green-dark);
+    }
+    .btn-ghost:hover { background: var(--green-dark); color: var(--white); }
+
+    .hero-image {
+      position: relative;
+    }
+    .hero-image .main-img {
+      border-radius: 30px; overflow: hidden;
+      box-shadow: var(--shadow-hover);
+      aspect-ratio: 4/5; object-fit: cover;
+      transform: rotate(-2deg);
+    }
+    .hero-badge {
+      position: absolute; bottom: 30px; right: -10px;
+      background: var(--white); border-radius: 16px;
+      padding: 14px 18px; box-shadow: var(--shadow);
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 700; color: var(--green-dark);
+    }
+    .hero-badge .b-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--green-soft); display: grid; place-items: center;
+      font-size: 20px;
+    }
+
+    /* ===== Features strip ===== */
+    .features {
+      padding: 40px 0; background: var(--white);
+      border-bottom: 1px solid var(--gray-light);
+    }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    }
+    .feature {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px; border-radius: var(--radius-sm);
+      transition: background .2s;
+    }
+    .feature:hover { background: var(--off-white); }
+    .feature-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: var(--green-soft); color: var(--green-dark);
+      display: grid; place-items: center; font-size: 22px; flex-shrink: 0;
+    }
+    .feature h4 { font-size: 15px; font-weight: 700; }
+    .feature p { font-size: 13px; color: var(--gray); }
+
+    /* ===== Section titles ===== */
+    .section { padding: 80px 0; }
+    .section-head {
+      display: flex; align-items: end; justify-content: space-between;
+      margin-bottom: 40px; gap: 20px; flex-wrap: wrap;
+    }
+    .section-head h2 {
+      font-size: clamp(26px, 3.5vw, 38px); font-weight: 800;
+      color: var(--green-deep);
+    }
+    .section-head p { color: var(--gray); max-width: 460px; }
+    .tabs {
+      display: flex; gap: 8px; background: var(--gray-light);
+      padding: 4px; border-radius: 999px;
+    }
+    .tab {
+      padding: 8px 20px; border-radius: 999px; font-weight: 600;
+      font-size: 14px; color: var(--gray); transition: all .2s;
+    }
+    .tab.active { background: var(--green-dark); color: var(--white); }
+
+    /* ===== Products ===== */
+    .products-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    }
+    .product {
+      background: var(--white); border-radius: var(--radius);
+      overflow: hidden; box-shadow: var(--shadow);
+      transition: transform .3s, box-shadow .3s;
+      position: relative;
+    }
+    .product:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+    .product-img-wrap {
+      position: relative; aspect-ratio: 1/1; overflow: hidden;
+      background: var(--off-white);
+    }
+    .product-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .5s;
+    }
+    .product:hover .product-img-wrap img { transform: scale(1.08); }
+    .product-badge {
+      position: absolute; top: 12px; right: 12px;
+      background: var(--accent); color: var(--green-deep);
+      font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px;
+    }
+    .product-badge.new { background: var(--green-dark); color: var(--white); }
+    .product-actions-overlay {
+      position: absolute; bottom: 12px; left: 12px; right: 12px;
+      display: flex; gap: 8px; opacity: 0; transform: translateY(10px);
+      transition: all .3s;
+    }
+    .product:hover .product-actions-overlay { opacity: 1; transform: translateY(0); }
+    .overlay-btn {
+      flex: 1; padding: 10px; border-radius: 10px;
+      background: var(--white); color: var(--green-dark);
+      font-weight: 700; font-size: 13px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+    .overlay-btn.primary { background: var(--green-dark); color: var(--white); }
+    .product-info { padding: 18px; }
+    .product-cat { font-size: 12px; color: var(--gray); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+    .product-name { font-size: 17px; font-weight: 700; margin: 4px 0 8px; color: var(--green-deep); }
+    .product-price-row { display: flex; align-items: center; justify-content: space-between; }
+    .price { font-size: 20px; font-weight: 800; color: var(--green-dark); }
+    .price .currency { font-size: 13px; font-weight: 600; color: var(--gray); }
+    .old-price { font-size: 14px; color: var(--gray); text-decoration: line-through; margin-inline-end: 6px; }
+    .rating { font-size: 13px; color: var(--accent); font-weight: 700; }
+
+    /* ===== Add to cart button (main) ===== */
+    .add-cart {
+      width: 100%; padding: 12px; margin-top: 12px;
+      background: var(--green-dark); color: var(--white);
+      border-radius: var(--radius-sm);
+      font-weight: 700; font-size: 14px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: background .2s, transform .15s;
+    }
+    .add-cart:hover { background: var(--green-mid); transform: translateY(-1px); }
+    .add-cart.added { background: var(--accent); color: var(--green-deep); }
+
+    /* ===== Banner / coupon ===== */
+    .coupon-banner {
+      margin: 20px 0 60px;
+      background: linear-gradient(120deg, var(--green-dark), var(--green-mid));
+      color: var(--white); border-radius: 24px;
+      padding: 40px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; flex-wrap: wrap;
+      position: relative; overflow: hidden;
+    }
+    .coupon-banner::after {
+      content: ''; position: absolute; right: -60px; top: -60px;
+      width: 220px; height: 220px; border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+    }
+    .coupon-banner h3 { font-size: 28px; font-weight: 800; margin-bottom: 6px; }
+    .coupon-banner p { opacity: .85; font-size: 15px; }
+    .coupon-code {
+      background: var(--white); color: var(--green-dark);
+      padding: 14px 24px; border-radius: 12px;
+      font-weight: 800; font-size: 20px; letter-spacing: 2px;
+      border: 2px dashed var(--accent);
+    }
+
+    /* ===== Categories ===== */
+    .cats-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    }
+    .cat-card {
+      position: relative; border-radius: 24px; overflow: hidden;
+      aspect-ratio: 16/9; cursor: pointer;
+    }
+    .cat-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+    .cat-card:hover img { transform: scale(1.06); }
+    .cat-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(6,38,29,0.75), transparent 60%);
+      display: flex; align-items: end; padding: 28px;
+      color: var(--white);
+    }
+    .cat-overlay h3 { font-size: 26px; font-weight: 800; }
+    .cat-overlay p { opacity: .85; font-size: 14px; }
+
+    /* ===== Testimonials ===== */
+    .testimonials { background: var(--off-white); }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .testi {
+      background: var(--white); padding: 28px; border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .testi-stars { color: var(--accent); font-size: 16px; margin-bottom: 12px; }
+    .testi p { color: var(--gray); font-size: 15px; margin-bottom: 18px; }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .testi-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--green-soft); display: grid; place-items: center;
+      font-weight: 700; color: var(--green-dark);
+    }
+    .testi-author h5 { font-weight: 700; font-size: 14px; }
+    .testi-author span { font-size: 12px; color: var(--gray); }
+
+    /* ===== Customer service ===== */
+    .cs-section {
+      background: var(--green-deep); color: var(--white);
+      padding: 70px 0; border-radius: 30px; margin: 40px 24px;
+    }
+    .cs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    .cs-text h2 { font-size: 34px; font-weight: 800; margin-bottom: 14px; }
+    .cs-text p { opacity: .85; font-size: 16px; margin-bottom: 24px; }
+    .cs-channels { display: flex; gap: 12px; flex-wrap: wrap; }
+    .cs-channel {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.12); padding: 12px 18px;
+      border-radius: 12px; font-weight: 600; font-size: 14px;
+      transition: background .2s;
+    }
+    .cs-channel:hover { background: rgba(255,255,255,0.22); }
+    .cs-form {
+      background: var(--white); border-radius: 20px; padding: 28px;
+      color: var(--green-deep);
+    }
+    .cs-form h4 { font-size: 20px; font-weight: 800; margin-bottom: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .form-group { margin-bottom: 12px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--gray); }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 12px 14px; border-radius: 10px;
+      border: 1.5px solid var(--gray-light); font-family: inherit;
+      font-size: 14px; transition: border-color .2s;
+      background: var(--off-white);
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      outline: none; border-color: var(--green-mid);
+    }
+    .form-group textarea { resize: vertical; min-height: 90px; }
+    .submit-btn {
+      width: 100%; padding: 14px; border-radius: 10px;
+      background: var(--green-dark); color: var(--white);
+      font-weight: 700; font-size: 15px;
+    }
+    .submit-btn:hover { background: var(--green-mid); }
+
+    /* ===== Footer ===== */
+    footer {
+      background: var(--green-deep); color: var(--white);
+      padding: 60px 0 24px; margin-top: 60px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px;
+      margin-bottom: 40px;
+    }
+    .footer-brand .logo { color: var(--white); margin-bottom: 14px; }
+    .footer-brand p { opacity: .75; font-size: 14px; max-width: 300px; }
+    .footer-col h5 { font-size: 15px; font-weight: 700; margin-bottom: 14px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { opacity: .75; font-size: 14px; transition: opacity .2s; }
+    .footer-col a:hover { opacity: 1; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 20px; display: flex; justify-content: space-between;
+      font-size: 13px; opacity: .7; flex-wrap: wrap; gap: 10px;
+    }
+
+    /* ===== Cart drawer ===== */
+    .cart-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+      opacity: 0; pointer-events: none; transition: opacity .3s; z-index: 90;
+    }
+    .cart-overlay.open { opacity: 1; pointer-events: auto; }
+    .cart-drawer {
+      position: fixed; top: 0; left: 0; bottom: 0;
+      width: 400px; max-width: 90vw;
+      background: var(--white); z-index: 100;
+      transform: translateX(-100%); transition: transform .35s;
+      display: flex; flex-direction: column;
+    }
+    .cart-overlay.open .cart-drawer { transform: translateX(0); }
+    .cart-header {
+      padding: 20px; border-bottom: 1px solid var(--gray-light);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .cart-header h3 { font-size: 20px; font-weight: 800; }
+    .cart-items { flex: 1; overflow-y: auto; padding: 16px 20px; }
+    .cart-item {
+      display: flex; gap: 12px; padding: 12px 0;
+      border-bottom: 1px solid var(--gray-light);
+    }
+    .cart-item img { width: 70px; height: 70px; border-radius: 10px; object-fit: cover; }
+    .cart-item-info { flex: 1; }
+    .cart-item-name { font-weight: 700; font-size: 14px; }
+    .cart-item-price { color: var(--green-dark); font-weight: 700; font-size: 14px; margin-top: 4px; }
+    .cart-item-qty { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+    .qty-btn { width: 26px; height: 26px; border-radius: 6px; background: var(--gray-light); font-weight: 700; }
+    .remove-btn { color: #c0392b; font-size: 12px; font-weight: 600; }
+    .cart-footer { padding: 20px; border-top: 1px solid var(--gray-light); }
+    .cart-total { display: flex; justify-content: space-between; font-weight: 800; font-size: 18px; margin-bottom: 14px; }
+    .checkout-btn {
+      width: 100%; padding: 14px; border-radius: 12px;
+      background: var(--green-dark); color: var(--white);
+      font-weight: 700; font-size: 15px;
+    }
+    .cart-empty { text-align: center; padding: 60px 20px; color: var(--gray); }
+    .cart-empty .empty-icon { font-size: 48px; margin-bottom: 12px; }
+
+    /* ===== Toast ===== */
+    .toast {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px);
+      background: var(--green-deep); color: var(--white);
+      padding: 14px 24px; border-radius: 12px; font-weight: 600;
+      box-shadow: var(--shadow-hover); z-index: 200;
+      transition: transform .3s; opacity: 0;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 960px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-image { order: -1; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .cs-grid { grid-template-columns: 1fr; }
+      .cats-grid { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .products-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .coupon-banner { padding: 28px 20px; }
+    }
+
+    /* Floating WhatsApp */
+    .whatsapp-float {
+      position: fixed; bottom: 24px; right: 24px;
+      width: 58px; height: 58px; border-radius: 50%;
+      background: #25D366; color: var(--white);
+      display: grid; place-items: center; font-size: 28px;
+      box-shadow: 0 8px 20px rgba(37,211,102,0.4);
+      z-index: 60; transition: transform .2s;
+    }
+    .whatsapp-float:hover { transform: scale(1.08); }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <span>🚚 توصيل مجاني لجميع الطلبات</span>
+    <span class="dot">•</span>
+    <span>🎁 قسيمة شرائية بقيمة 50 ريال عند الطلب بـ 350 ريال</span>
+    <span class="dot">•</span>
+    <span>🇸🇦 شحن داخل المملكة العربية السعودية</span>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <a href="#" class="logo">
+        <span class="logo-mark" style="font-family:'Sora',sans-serif;">S</span>
+        <span style="font-family:'Sora',sans-serif;letter-spacing:2px;">SOLA</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#home">الرئيسية</a>
+        <a href="#men">للرجال</a>
+        <a href="#women">للنساء</a>
+        <a href="#new">وصل حديثاً</a>
+        <a href="#contact">خدمة العملاء</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" aria-label="بحث">🔍</button>
+        <button class="icon-btn cart-btn" id="cartOpen" aria-label="السلة">
+          🛒
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <h1>أناقة <span class="highlight">تليق</span> بأسلوبك</h1>
+        <p>اكتشف مجموعتنا الحصرية من النظارات الشمسية للرجال والنساء. تصاميم عصرية، حماية UV400، وإطارات عالية الجودة — مع توصيل مجاني داخل المملكة.</p>
+        <div class="hero-cta">
+          <a href="#products" class="btn btn-primary">تسوق الآن ←</a>
+          <a href="#new" class="btn btn-ghost">وصل حديثاً</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img class="main-img" src="https://images.pexels.com/photos/39369836/pexels-photo-39369836.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="نظارات شمسية فاخرة بإطار ذهبي" />
+        <div class="hero-badge">
+          <span class="b-icon">☀️</span>
+          <div>
+            <div style="font-size:13px;opacity:.7">حماية</div>
+            <div>UV400</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="container features-grid">
+      <div class="feature">
+        <div class="feature-icon">🚚</div>
+        <div><h4>توصيل مجاني</h4><p>لجميع الطلبات داخل المملكة</p></div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🛡️</div>
+        <div><h4>حماية UV400</h4><p>حماية كاملة من أشعة الشمس</p></div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">↩️</div>
+        <div><h4>إرجاع سهل</h4><p>خلال 14 يوماً من الاستلام</p></div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">💳</div>
+        <div><h4>دفع آمن</h4><p>مدى، Apple Pay، Visa</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="section" id="categories">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>تسوق حسب الفئة</h2>
+          <p>تصاميم مصممة بعناية لتناسب كل ذوق وأسلوب.</p>
+        </div>
+      </div>
+      <div class="cats-grid">
+        <a href="#men" class="cat-card">
+          <img src="https://images.pexels.com/photos/31305965/pexels-photo-31305965.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="نظارات رجالية" />
+          <div class="cat-overlay">
+            <div><h3>للرجال</h3><p>إطارات كلاسيكية وعصرية</p></div>
+          </div>
+        </a>
+        <a href="#women" class="cat-card">
+          <img src="https://images.pexels.com/photos/29538706/pexels-photo-29538706.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="نظارات نسائية" />
+          <div class="cat-overlay">
+            <div><h3>للنساء</h3><p>تصاميم أنيقة وفاخرة</p></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="section" id="products">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>منتجاتنا</h2>
+          <p>مجموعة مختارة من أفضل النظارات الشمسية.</p>
+        </div>
+        <div class="tabs" id="productTabs">
+          <button class="tab active" data-filter="all">الكل</button>
+          <button class="tab" data-filter="men">رجال</button>
+          <button class="tab" data-filter="women">نساء</button>
+          <button class="tab" data-filter="new">جديد</button>
+        </div>
+      </div>
+      <div class="products-grid" id="productsGrid"></div>
+    </div>
+  </section>
+
+  <!-- Coupon banner -->
+  <div class="container">
+    <div class="coupon-banner">
+      <div>
+        <h3>قسيمة شرائية عند الطلب بـ 350 ريال</h3>
+        <p>استخدم الكود <strong>SHADE50</strong> واحصل على خصم 50 ريال + توصيل مجاني.</p>
+      </div>
+      <div class="coupon-code">SHADE50</div>
+    </div>
+  </div>
+
+  <!-- New arrivals -->
+  <section class="section" id="new">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>وصل حديثاً</h2>
+          <p>أحدث التصاميم التي وصلت للتو.</p>
+        </div>
+      </div>
+      <div class="products-grid" id="newGrid"></div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section testimonials">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>آراء عملائنا</h2>
+          <p>آلاف العملاء يثقون بنا.</p>
+        </div>
+      </div>
+      <div class="testi-grid">
+        <div class="testi">
+          <div class="testi-stars">★★★★★</div>
+          <p>"جودة ممتازة وتصميم أنيق. وصلت بسرعة والتغليف راقي."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">أ</div>
+            <div><h5>أحمد العتيبي</h5><span>الرياض</span></div>
+          </div>
+        </div>
+        <div class="testi">
+          <div class="testi-stars">★★★★★</div>
+          <p>"أحببت النظارات، حماية من الشمس ممتازة والسعر مناسب."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">س</div>
+            <div><h5>سارة المطيري</h5><span>جدة</span></div>
+          </div>
+        </div>
+        <div class="testi">
+          <div class="testi-stars">★★★★☆</div>
+          <p>"خدمة العملاء سريعة وودودة. أنصح بالمتجر."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">ف</div>
+            <div><h5>فهد القحطاني</h5><span>الدمام</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer service -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="cs-section">
+        <div class="container cs-grid">
+          <div class="cs-text">
+            <h2>خدمة العملاء</h2>
+            <p>نحن هنا لمساعدتك. تواصل معنا في أي وقت وسنرد عليك في أسرع وقت.</p>
+            <div class="cs-channels">
+              <a class="cs-channel" href="https://wa.me/966500000000" target="_blank">💬 واتساب</a>
+              <a class="cs-channel" href="mailto:support@thalal.sa">✉️ البريد الإلكتروني</a>
+              <a class="cs-channel" href="tel:+966500000000">📞 اتصال</a>
+              <a class="cs-channel" href="#">📍 موقعنا</a>
+            </div>
+          </div>
+          <div class="cs-form">
+            <h4>أرسل لنا رسالة</h4>
+            <form id="contactForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>الاسم</label>
+                  <input type="text" placeholder="اسمك" required />
+                </div>
+                <div class="form-group">
+                  <label>البريد الإلكتروني</label>
+                  <input type="email" placeholder="example@email.com" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>الموضوع</label>
+                <select>
+                  <option>استفسار عن منتج</option>
+                  <option>حالة الطلب</option>
+                  <option>إرجاع / استبدال</option>
+                  <option>أخرى</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>الرسالة</label>
+                <textarea placeholder="اكتب رسالتك هنا..."></textarea>
+              </div>
+              <button type="submit" class="submit-btn">إرسال</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <span class="logo-mark" style="font-family:'Sora',sans-serif;">S</span>
+            <span style="font-family:'Sora',sans-serif;letter-spacing:2px;">SOLA</span>
+          </a>
+          <p>متجرك المفضل للنظارات الشمسية في المملكة العربية السعودية.</p>
+        </div>
+        <div class="footer-col">
+          <h5>المتجر</h5>
+          <ul>
+            <li><a href="#men">للرجال</a></li>
+            <li><a href="#women">للنساء</a></li>
+            <li><a href="#new">وصل حديثاً</a></li>
+            <li><a href="#">الأكثر مبيعاً</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>المساعدة</h5>
+          <ul>
+            <li><a href="#">تتبع الطلب</a></li>
+            <li><a href="#">الشحن والتوصيل</a></li>
+            <li><a href="#">الإرجاع</a></li>
+            <li><a href="#contact">خدمة العملاء</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>تواصل معنا</h5>
+          <ul>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Twitter / X</a></li>
+            <li><a href="#">TikTok</a></li>
+            <li><a href="#">Snapchat</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 SOLA. جميع الحقوق محفوظة.</span>
+        <span>🇸🇦 صنع في المملكة العربية السعودية</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart drawer -->
+  <div class="cart-overlay" id="cartOverlay">
+    <div class="cart-drawer">
+      <div class="cart-header">
+        <h3>سلة التسوق</h3>
+        <button class="icon-btn" id="cartClose">✕</button>
+      </div>
+      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-footer" id="cartFooter"></div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">تمت الإضافة إلى السلة</div>
+
+  <!-- WhatsApp float -->
+  <a class="whatsapp-float" href="https://wa.me/966500000000" target="_blank" aria-label="واتساب">💬</a>
+
+  <script>
+    // ===== Product data =====
+    const IMG = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=800`;
+    const products = [
+      { id: 1, name: 'نظارة أوستن كلاسيك', cat: 'men', price: 249, old: 320, rating: 4.8, img: IMG('6253858'), badge: 'الأكثر مبيعاً', new: false },
+      { id: 2, name: 'نظارة رياضية برو', cat: 'men', price: 299, old: null, rating: 4.6, img: IMG('32677214'), badge: null, new: true },
+      { id: 3, name: 'نظارة أفياتور ذهبية', cat: 'men', price: 349, old: 420, rating: 4.9, img: IMG('39369836'), badge: 'خصم', new: false },
+      { id: 4, name: 'نظارة كات آي', cat: 'women', price: 279, old: null, rating: 4.7, img: IMG('28843756'), badge: null, new: true },
+      { id: 5, name: 'نظارة سيلين مستديرة', cat: 'women', price: 319, old: 390, rating: 4.8, img: IMG('12568256'), badge: 'جديد', new: true },
+      { id: 6, name: 'نظارة أوفس وايت', cat: 'women', price: 259, old: null, rating: 4.5, img: IMG('29538719'), badge: null, new: false },
+      { id: 7, name: 'نظارة pilot كلاسيك', cat: 'men', price: 389, old: null, rating: 4.9, img: IMG('34978681'), badge: 'فاخر', new: false },
+      { id: 8, name: 'نظارة زهور', cat: 'women', price: 229, old: 280, rating: 4.6, img: IMG('27353347'), badge: 'خصم', new: false },
+    ];
+
+    const cart = {};
+
+    function renderProducts(gridId, filter) {
+      const grid = document.getElementById(gridId);
+      grid.innerHTML = '';
+      let list = products;
+      if (filter && filter !== 'all') {
+        if (filter === 'new') list = products.filter(p => p.new);
+        else list = products.filter(p => p.cat === filter);
+      }
+      list.forEach(p => {
+        const badgeHtml = p.badge ? `<span class="product-badge ${p.new?'new':''}">${p.badge}</span>` : '';
+        const oldHtml = p.old ? `<span class="old-price">${p.old} <span class="currency">ريال</span></span>` : '';
+        const card = document.createElement('div');
+        card.className = 'product';
+        card.innerHTML = `
+          <div class="product-img-wrap">
+            ${badgeHtml}
+            <img src="${p.img}" alt="${p.name}" />
+            <div class="product-actions-overlay">
+              <button class="overlay-btn">♡ مفضلة</button>
+              <button class="overlay-btn primary" onclick="quickView(${p.id})">عرض</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-cat">${p.cat === 'men' ? 'رجال' : 'نساء'}</div>
+            <div class="product-name">${p.name}</div>
+            <div class="product-price-row">
+              <div>${oldHtml}<span class="price">${p.price} <span class="currency">ريال</span></span></div>
+              <div class="rating">★ ${p.rating}</div>
+            </div>
+            <button class="add-cart" onclick="addToCart(${p.id})">🛒 إضافة إلى السلة</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function addToCart(id) {
+      const p = products.find(x => x.id === id);
+      if (!cart[id]) cart[id] = { ...p, qty: 0 };
+      cart[id].qty += 1;
+      updateCart();
+      showToast('تمت إضافة "' + p.name + '" إلى السلة');
+      // button feedback
+      const btns = document.querySelectorAll('.add-cart');
+      btns.forEach(b => {
+        if (b.getAttribute('onclick') === `addToCart(${id})`) {
+          b.classList.add('added');
+          b.textContent = '✓ تمت الإضافة';
+          setTimeout(() => { b.classList.remove('added'); b.innerHTML = '🛒 إضافة إلى السلة'; }, 1400);
+        }
+      });
+    }
+
+    function updateCart() {
+      const items = Object.values(cart);
+      const count = items.reduce((s, i) => s + i.qty, 0);
+      document.getElementById('cartCount').textContent = count;
+      const list = document.getElementById('cartItems');
+      if (items.length === 0) {
+        list.innerHTML = '<div class="cart-empty"><div class="empty-icon">🛒</div><p>السلة فارغة</p></div>';
+        document.getElementById('cartFooter').innerHTML = '';
+        return;
+      }
+      list.innerHTML = items.map(i => `
+        <div class="cart-item">
+          <img src="${i.img}" alt="${i.name}" />
+          <div class="cart-item-info">
+            <div class="cart-item-name">${i.name}</div>
+            <div class="cart-item-price">${i.price} ريال</div>
+            <div class="cart-item-qty">
+              <button class="qty-btn" onclick="changeQty(${i.id}, -1)">−</button>
+              <span>${i.qty}</span>
+              <button class="qty-btn" onclick="changeQty(${i.id}, 1)">+</button>
+              <button class="remove-btn" onclick="removeItem(${i.id})" style="margin-inline-start:auto">حذف</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+      const total = items.reduce((s, i) => s + i.price * i.qty, 0);
+      document.getElementById('cartFooter').innerHTML = `
+        <div class="cart-total"><span>المجموع</span><span>${total} ريال</span></div>
+        <button class="checkout-btn" onclick="checkout()">إتمام الطلب</button>
+      `;
+    }
+
+    function changeQty(id, d) {
+      if (!cart[id]) return;
+      cart[id].qty += d;
+      if (cart[id].qty <= 0) delete cart[id];
+      updateCart();
+    }
+    function removeItem(id) { delete cart[id]; updateCart(); }
+    function checkout() {
+      const items = Object.values(cart);
+      if (items.length === 0) { showToast('السلة فارغة'); return; }
+      showToast('تم إرسال طلبك! سنتواصل معك قريباً');
+      for (const k in cart) delete cart[k];
+      updateCart();
+      document.getElementById('cartOverlay').classList.remove('open');
+    }
+    function quickView(id) { addToCart(id); }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    // tabs
+    document.querySelectorAll('#productTabs .tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#productTabs .tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderProducts('productsGrid', btn.dataset.filter);
+      });
+    });
+
+    // hash-based category navigation
+    function applyHash() {
+      const h = (location.hash || '').replace('#', '');
+      if (h === 'men' || h === 'women') {
+        const tab = document.querySelector(`#productTabs .tab[data-filter="${h === 'men' ? 'men' : 'women'}"]`);
+        if (tab) tab.click();
+        const sec = document.getElementById('products');
+        if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+      } else if (h === 'new') {
+        const sec = document.getElementById('new');
+        if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    window.addEventListener('hashchange', applyHash);
+    // anchors for men/women
+    const menAnchor = document.createElement('div'); menAnchor.id = 'men'; menAnchor.style.position='absolute'; menAnchor.style.top='-80px';
+    const womenAnchor = document.createElement('div'); womenAnchor.id = 'women'; womenAnchor.style.position='absolute'; womenAnchor.style.top='-80px';
+    document.getElementById('products').prepend(menAnchor, womenAnchor);
+
+    // cart open/close
+    document.getElementById('cartOpen').addEventListener('click', () => document.getElementById('cartOverlay').classList.add('open'));
+    document.getElementById('cartClose').addEventListener('click', () => document.getElementById('cartOverlay').classList.remove('open'));
+    document.getElementById('cartOverlay').addEventListener('click', (e) => {
+      if (e.target.id === 'cartOverlay') document.getElementById('cartOverlay').classList.remove('open');
+    });
+
+    // contact form
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      showToast('تم إرسال رسالتك، سنرد عليك قريباً');
+      e.target.reset();
+    });
+
+    // init
+    renderProducts('productsGrid', 'all');
+    renderProducts('newGrid', 'new');
+    updateCart();
+  </script>
+</body>
+</html>
